@@ -1,0 +1,50 @@
+<div align=center>
+    <a href="{% url 'inicio' %}">
+      <h1 style="font-size:25px; color: rgb(63, 79, 90); border: rgb(255, 4, 4);">SISTEMA INVENTARIO CITT</h1>
+    </a>
+  </div>
+
+<div class="card">
+    <div class="card-body">
+        <h2>Listado de articulos</h2>
+        <hr>
+
+        <table class="table table-striped table-hover table-responsive-sm">
+            <tr>
+                <th>Fecha ingreso</th>
+                <th>Nombre articulo</th>
+                <th>Categoria</th>
+                <th>Codigo de barras</th>
+                <th>Estado articulo</th>
+                <th>Estado</th>
+                <th>Persona prestamo</th>
+                <th>Stock sede</th>
+                <th>Observaciones</th>
+            </tr>
+        
+            {% for p in articulos %}
+        
+            <tr>
+                <td>{{ p.fecha_ingreso }}</td>
+                <td>{{ p.nombre_articulo }}</td>
+                <td>{{ p.categoria }}</td>
+                <td>{{ p.codigo_barra }}</td>
+                <td>{{ p.estado_articulo }}</td>
+                <td>{{ p.estado }}</td>
+                <td>{{ p.persona_prestamo }}</td>
+                <td>{{ p.stock_sede }}</td>
+                <td>{{ p.observaciones }}</td>
+            </tr>
+            
+            {% endfor %}
+    
+        </table>
+    </div>
+</div>
+
+<br><br><br>
+<div>
+    <footer class="footer">
+      <center>© 2022. Todos los derechos reservados. Desarrollado por Padrigo Creaciones.</center>
+    </footer>
+  </div>

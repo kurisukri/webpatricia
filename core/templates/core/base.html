@@ -25,27 +25,31 @@
   <link rel="stylesheet" href="{% static 'core/css/nav.css' %}">
   <link rel="stylesheet" href="{% static 'core/css/responsiveiframe.css' %}">
   <script src="{% static 'core/js/responsive.js' %}"></script>
+
 </head>
 
 <body class=".cuerpo" background="{% static 'core/img/fondo.jpg' %}">
 
   <div align=center>
     <a href="{% url 'inicio' %}">
-      <h1 style="font-size:25px; color: rgb(63, 79, 90); border: rgb(255, 4, 4);">CORTINAJES PATRICIA</h1>
+      <h1 style="font-size:25px; color: rgb(63, 79, 90); border: rgb(255, 4, 4);">SISTEMA INVENTARIO CITT</h1>
     </a>
   </div>
-  
+
   <div class="topnav" id="myTopnav">
-    <a class="active" href="{% url 'inicio' %}">INICIO</a>
+    <a class="text-danger" href="{% url 'inicio' %}">INICIO</a>
+    {% if not user.is_authenticated %}
     <a href="{% url 'login' %}">LOGIN</a>
-    <a href="{% url 'comomedir' %}">COMO MEDIR</a>
-    <a href="{% url 'contactanos' %}">CONTACTANOS</a>
-    <a href="{% url 'encuentranos' %}">ENCUENTRANOS</a>
-    {% if user.is_staff %}
-    <a href="{% url 'listadocortinas' %}">ORDENES</a>
     {% endif %}
-    <a href="{% url 'nuevacortina' %}">NUEVO PEDIDO</a>
+    {% if user.is_staff %}
+    <a href="{% url 'listadoarticulos' %}">LISTADO ARTICULOS</a>
+    {% endif %}
+    {% if user.is_staff %}
+    <a href="{% url 'nuevoarticulo' %}">NUEVO ARTICULO</a>
+    <a href="{% url 'listadosolicitudes' %}">LISTADO SOLICITUDES</a>
+    {% endif %}
     {% if user.is_authenticated %}
+    <a href="{% url 'solicitarreserva' %}">SOLICITUD RESERVA</a>
     <a href="#"> Usuario: {{ user.username }}</a>
     <a href="{% url 'logout' %}">Desconectar</a>
     {% endif %}
@@ -53,18 +57,32 @@
       <i class="fa fa-bars"></i>
     </a>
   </div>
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  {% if messages %}
+  {% for m in messages %}
+  <script>
+    Swal.fire({
+      "title": "Felicitaciones",
+      "text": "{{m}}",
+      "icon": "success"
+    })
+  </script>
 
-    {% block contenido %}
-    
-    
-    {% endblock %}
+  {% endfor %}
+  {% endif %}
 
 
-    <div>
-      <footer class="footer">
-        <center>© 2020 Cortinajes Patricia. Todos los derechos reservados. Desarrollado por Padrigo Creaciones.</center>
-      </footer>
-    </div>
+  {% block contenido %}
+
+
+  {% endblock %}
+
+
+  <div>
+    <footer class="footer">
+      <center>© 2022. Todos los derechos reservados. Desarrollado por CJDR Creaciones.</center>
+    </footer>
+  </div>
 </body>
 
 </html>

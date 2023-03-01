@@ -5,22 +5,37 @@
 {% load crispy_forms_tags %}
 
 {% block contenido %}
-<center>
-  <h1>Login</h1>
-  <div class="links">
-    <a href="{% url 'login' %}" class="active">LOGIN |</a>
-    <a href="{% url 'registrousuario' %}">REGISTRO</a>
-  </div>
 
-  <form action="{% url 'login' %}" method="POST">
-    {% csrf_token %}
+<br>
+<div class="row">
+  <div class="col-12 col-md-6 offset-md-3">
+    <div class="card">
+      <div class="card-body">
+        <h1>Login</h1>
+        <div class="links">
+          <a href="{% url 'login' %}" class="active">LOGIN |</a>
+          <a href="{% url 'registrousuario' %}">REGISTRO</a>
+        </div>
+        <hr>
+        
+        <form action="{% url 'login' %}" method="POST">
+          {% csrf_token %}
+          
+          <div>
+            {{ form | crispy }}
+          </div>
+          
+          <div class="d-flex justify-content-center">
+            <button type="submit" id="btnEnviar" class="btn btn-primary">Enviar</button>
+        </div>
 
-    <div>
-    {{ form | crispy }}
+        </form>
+        
+        <br>
+        <p>O ingresa con <a href="{% url 'social:begin' 'facebook' %}">FACEBOOK</a></p>
+      
+      </div>
     </div>
-
-    <input class="form-control" type="submit" value="Login">
-  </form>
-  <p>O ingresa con <a href="{% url 'social:begin' 'facebook' %}">FACEBOOK</a></p>
-</center>
+  </div>
+</div>
 {% endblock %}

@@ -8,22 +8,33 @@
 
 
 
-  <center>
-    <h1>Registro</h1>
-    <a href="{% url 'login' %}">LOGIN |</a>
-    <a href="{% url 'registrousuario' %}" class="active">REGISTRO</a>
+<center>
+  <h1>Registro</h1>
+  <a href="{% url 'login' %}">LOGIN |</a>
+  <a href="{% url 'registrousuario' %}" class="active">REGISTRO</a>
+
+  <div class="row">
+    <div class="col-12 col-md-6 offset-md-3">
+      <div class="card">
+        <div class="card-body">
+
+          <form action="" method="POST">
+            {% csrf_token %}
+            {{ form | crispy }}
 
 
-    <form action="" method="POST">
-      {% csrf_token %}
-      <table>
-      {{ form | crispy }}
-    </table>
+            <input class="form-control" type="reset" value="Limpiar">
+            <br>
+            <input class="form-control" type="submit" value="Registrar">
 
-      <input class="form-control" type="reset" value="Limpiar">
-      <br>
-      <input class="form-control" type="submit" value="Registrar">
+            <p>O ingresa con <a href="{% url 'social:begin' 'FACEBOOK' %}">Facebook</a></p>
+          </form>
 
-      <p>O ingresa con <a href="{% url 'social:begin' 'FACEBOOK' %}">Facebook</a></p>
-  </center>
-  {% endblock %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</center>
+{% endblock %}
